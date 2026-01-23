@@ -3,206 +3,218 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Agentic AI Portfolio</title>
+  <title>Agentic AI Planner</title>
 
+  <!-- ===== CSS ===== -->
   <style>
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #0f172a;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #0f172a, #020617);
       color: #e5e7eb;
-      line-height: 1.6;
     }
 
     header {
-      background: #020617;
-      padding: 40px 20px;
       text-align: center;
+      padding: 50px 20px;
+      background: linear-gradient(135deg, #0284c7, #0ea5e9);
+      color: #020617;
     }
 
     header h1 {
       margin: 0;
       font-size: 2.5rem;
-      color: #38bdf8;
     }
 
     header p {
-      max-width: 800px;
-      margin: 15px auto;
       font-size: 1.1rem;
-      color: #cbd5f5;
+      max-width: 800px;
+      margin: 10px auto 0;
     }
 
     section {
-      padding: 50px 20px;
       max-width: 1000px;
       margin: auto;
-    }
-
-    h2 {
-      color: #38bdf8;
-      border-bottom: 2px solid #1e293b;
-      padding-bottom: 10px;
+      padding: 40px 20px;
     }
 
     .card {
       background: #020617;
-      border: 1px solid #1e293b;
-      border-radius: 8px;
-      padding: 20px;
-      margin-top: 20px;
+      border-radius: 14px;
+      padding: 25px;
+      margin-top: 25px;
+      box-shadow: 0 0 30px rgba(56,189,248,0.12);
     }
 
-    ul {
-      padding-left: 20px;
+    input {
+      width: 100%;
+      padding: 14px;
+      font-size: 1rem;
+      border-radius: 10px;
+      border: none;
+      margin-bottom: 15px;
     }
 
     button {
       background: #38bdf8;
       color: #020617;
       border: none;
-      padding: 10px 20px;
+      padding: 12px 26px;
       font-size: 1rem;
-      border-radius: 6px;
+      border-radius: 10px;
       cursor: pointer;
-      margin-top: 10px;
     }
 
     button:hover {
       background: #0ea5e9;
     }
 
-    input {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      font-size: 1rem;
-      border-radius: 6px;
-      border: none;
+    h2 {
+      color: #38bdf8;
+      margin-top: 30px;
     }
 
-    #output {
-      margin-top: 20px;
-      background: #020617;
-      border: 1px solid #1e293b;
-      padding: 15px;
-      border-radius: 6px;
-      font-family: monospace;
-      white-space: pre-line;
+    .step {
+      margin: 10px 0;
+      padding-left: 10px;
+    }
+
+    .tool {
+      margin: 8px 0;
+    }
+
+    .tool a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+
+    .tool a:hover {
+      text-decoration: underline;
     }
 
     footer {
       text-align: center;
-      padding: 20px;
-      background: #020617;
-      font-size: 0.9rem;
+      padding: 25px;
       color: #94a3b8;
+      font-size: 0.9rem;
     }
   </style>
 </head>
 
 <body>
 
-<header>
-  <h1>Agentic AI Portfolio</h1>
-  <p>
-    A zero-cost, resume-ready demonstration of an Agentic AI system that plans,
-    reasons, selects tools, and executes tasks using a structured intelligence loop.
-  </p>
-</header>
-
-<section>
-  <h2>🧠 What is Agentic AI?</h2>
-  <div class="card">
+  <!-- ===== HEADER ===== -->
+  <header>
+    <h1>🤖 Agentic AI Planner</h1>
     <p>
-      Agentic AI is an artificial intelligence system capable of autonomous
-      decision-making through continuous reasoning, planning, action, and observation.
+      A zero-cost agentic AI simulation that creates step-by-step plans and
+      recommends the best tools and platforms to execute your task.
     </p>
-    <p>
-      Unlike traditional chatbots, an agentic system does not simply respond —
-      it <strong>decides what to do next</strong>.
-    </p>
-  </div>
-</section>
+  </header>
 
-<section>
-  <h2>🏗️ System Architecture</h2>
-  <div class="card">
-    <pre>
-User Input
-   ↓
-Reasoning Engine (LLM)
-   ↓
-Task Planner
-   ↓
-Tool Selector
-   ↓
-Action Execution
-   ↓
-Observation
-   ↓
-Memory Update
-    </pre>
-  </div>
-</section>
+  <!-- ===== MAIN SECTION ===== -->
+  <section>
 
-<section>
-  <h2>🤖 Agent Demo (Simulation)</h2>
-  <div class="card">
-    <p>
-      Enter a task below. The agent will analyze the intent and generate
-      a step-by-step execution plan, simulating how an agentic AI operates.
-    </p>
+    <div class="card">
+      <input
+        id="taskInput"
+        placeholder="Example: Build a plan for learning DSA"
+      />
+      <button onclick="runAgent()">Run Agent</button>
+    </div>
 
-    <input id="taskInput" placeholder="Example: Build a resume website" />
-    <button onclick="runAgent()">Run Agent</button>
+    <div id="output" class="card"></div>
 
-    <div id="output"></div>
-  </div>
-</section>
+  </section>
 
-<section>
-  <h2>📄 Resume Summary</h2>
-  <div class="card">
-    <p>
-      Designed and deployed a zero-cost Agentic AI portfolio website demonstrating
-      autonomous task planning, tool orchestration, and reasoning loops using
-      static web technologies.
-    </p>
-  </div>
-</section>
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    Built with ❤️ using Agentic AI principles | Zero Cost | Resume Ready
+  </footer>
 
-<footer>
-  Built for learning, demonstration, and engineering credibility.
-</footer>
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    function runAgent() {
+      const task = document.getElementById("taskInput").value.toLowerCase();
+      const output = document.getElementById("output");
 
-<script>
-function runAgent() {
-  const task = document.getElementById("taskInput").value;
+      if (!task) {
+        output.innerHTML = "⚠️ Please enter a task.";
+        return;
+      }
 
-  if (!task) {
-    document.getElementById("output").innerText = "⚠️ Please enter a task.";
-    return;
-  }
+      let plan = [];
+      let tools = [];
 
-  const steps = [
-    "Analyze user intent",
-    "Break task into subtasks",
-    "Select appropriate tools",
-    "Execute actions sequentially",
-    "Verify outcome",
-    "Store result in memory"
-  ];
+      // ===== AGENT INTENT LOGIC =====
+      if (task.includes("dsa")) {
+        plan = [
+          "Choose a programming language (C++, Java, or Python)",
+          "Learn time and space complexity",
+          "Study arrays, strings, and recursion",
+          "Master linked lists, stacks, and queues",
+          "Learn trees and binary search trees",
+          "Study graphs and graph traversal algorithms",
+          "Practice dynamic programming",
+          "Solve problems daily and revise concepts"
+        ];
 
-  let result = `Task Received: "${task}"\n\nAgent Execution Plan:\n`;
+        tools = [
+          { name: "GeeksforGeeks – DSA Tutorial", link: "https://www.geeksforgeeks.org/dsa-tutorial/" },
+          { name: "LeetCode – Practice Problems", link: "https://leetcode.com/" },
+          { name: "Coursera – Data Structures Courses", link: "https://www.coursera.org/search?query=data%20structures" },
+          { name: "freeCodeCamp (YouTube)", link: "https://www.youtube.com/@freecodecamp" }
+        ];
+      }
 
-  steps.forEach((step, index) => {
-    result += `Step ${index + 1}: ${step}\n`;
-  });
+      else if (task.includes("web")) {
+        plan = [
+          "Learn HTML basics",
+          "Understand CSS and responsive design",
+          "Learn JavaScript fundamentals",
+          "Build small projects",
+          "Learn a framework (React / Vue)",
+          "Deploy projects online"
+        ];
 
-  document.getElementById("output").innerText = result;
-}
-</script>
+        tools = [
+          { name: "MDN Web Docs", link: "https://developer.mozilla.org/" },
+          { name: "freeCodeCamp", link: "https://www.freecodecamp.org/" },
+          { name: "CSS-Tricks", link: "https://css-tricks.com/" }
+        ];
+      }
+
+      else {
+        plan = [
+          "Analyze the task goal",
+          "Break the task into milestones",
+          "Identify required skills",
+          "Select tools and learning resources",
+          "Execute step by step",
+          "Review progress and improve"
+        ];
+
+        tools = [
+          { name: "Google Search", link: "https://www.google.com" },
+          { name: "Notion", link: "https://www.notion.so" },
+          { name: "YouTube", link: "https://www.youtube.com" }
+        ];
+      }
+
+      // ===== RENDER OUTPUT =====
+      let html = `<h2>🧠 Step-by-Step Plan</h2>`;
+      plan.forEach((step, index) => {
+        html += `<div class="step">🔹 Step ${index + 1}: ${step}</div>`;
+      });
+
+      html += `<h2>🛠 Suggested Tools & Apps</h2>`;
+      tools.forEach(tool => {
+        html += `<div class="tool">🔗 <a href="${tool.link}" target="_blank">${tool.name}</a></div>`;
+      });
+
+      output.innerHTML = html;
+    }
+  </script>
 
 </body>
 </html>
