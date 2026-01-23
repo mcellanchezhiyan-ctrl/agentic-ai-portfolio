@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LearnSmart – AI Learning Planner</title>
+<title>LearnSmart – Learning Platform</title>
 
 <style>
 body {
@@ -11,12 +11,14 @@ body {
   font-family: "Segoe UI", sans-serif;
   background: #0f172a;
   color: #e5e7eb;
-  overflow-x: hidden;
 }
 
 nav {
   background: #020617;
   padding: 15px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 nav h1 {
@@ -25,8 +27,8 @@ nav h1 {
 }
 
 header {
-  text-align: center;
   padding: 60px 20px;
+  text-align: center;
   background: linear-gradient(135deg, #0284c7, #0ea5e9);
   color: #020617;
 }
@@ -42,7 +44,7 @@ section {
   border-radius: 14px;
   padding: 25px;
   margin-top: 25px;
-  box-shadow: 0 0 25px rgba(56,189,248,0.12);
+  box-shadow: 0 0 20px rgba(56,189,248,0.1);
 }
 
 input {
@@ -54,14 +56,14 @@ input {
 }
 
 button {
+  margin-top: 10px;
   background: #38bdf8;
   color: #020617;
   border: none;
-  padding: 12px 26px;
+  padding: 12px 25px;
   border-radius: 10px;
-  cursor: pointer;
   font-size: 1rem;
-  margin-top: 10px;
+  cursor: pointer;
 }
 
 button:hover {
@@ -70,6 +72,7 @@ button:hover {
 
 h3 {
   color: #38bdf8;
+  margin-top: 25px;
 }
 
 .step {
@@ -81,17 +84,17 @@ h3 {
   text-decoration: none;
 }
 
-/* ===== STAR MENU ===== */
+/* ===== 🌟 STAR MENU ===== */
 .star-container {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  top: 18px;
+  right: 20px;
   z-index: 1000;
 }
 
 .star-btn {
-  width: 60px;
-  height: 60px;
+  width: 55px;
+  height: 55px;
   border-radius: 50%;
   background: #38bdf8;
   color: #020617;
@@ -100,41 +103,45 @@ h3 {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  animation: spin 8s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 
 .radial-menu {
   position: absolute;
-  width: 300px;
-  height: 300px;
+  width: 280px;
+  height: 280px;
   border-radius: 50%;
   background: rgba(2,6,23,0.95);
-  top: -120px;
-  left: -120px;
+  top: 70px;
+  right: -110px;
   display: none;
-  justify-content: center;
-  align-items: center;
 }
 
 .radial-menu.active {
-  display: flex;
+  display: block;
 }
 
 .lang {
   position: absolute;
   background: #38bdf8;
   color: #020617;
-  padding: 10px 14px;
+  padding: 8px 14px;
   border-radius: 20px;
   cursor: pointer;
   font-size: 0.9rem;
 }
 
-/* Positions */
-.lang.python { top: 10%; left: 40%; }
-.lang.c { top: 35%; left: 75%; }
-.lang.cpp { top: 65%; left: 65%; }
-.lang.java { top: 65%; left: 15%; }
-.lang.js { top: 35%; left: 5%; }
+/* Language positions */
+.lang.python { top: 5%; left: 40%; }
+.lang.c      { top: 30%; left: 75%; }
+.lang.cpp    { top: 65%; left: 65%; }
+.lang.java   { top: 65%; left: 10%; }
+.lang.js     { top: 30%; left: 0%; }
 
 footer {
   text-align: center;
@@ -153,129 +160,157 @@ footer {
 
 <header>
   <h2>Learn • Plan • Track</h2>
-  <p>Choose a programming language or enter any learning goal.</p>
+  <p>Type your goal or choose a language using 🌟</p>
 </header>
 
 <section>
+  <!-- TEXT INPUT MODE -->
   <div class="card">
-    <input id="taskInput" placeholder="Example: Learn DSA / Learn Web Development">
-    <button onclick="runAgent()">Generate Plan</button>
+    <input id="taskInput" placeholder="Example: Learn DSA / Learn Python / Learn Web Development">
+    <button onclick="textPlanner()">Generate Plan</button>
   </div>
 
+  <!-- OUTPUT -->
   <div id="output" class="card"></div>
 </section>
 
-<!-- ===== STAR LANGUAGE MENU ===== -->
+<!-- 🌟 STAR LANGUAGE MODE -->
 <div class="star-container">
-  <div class="star-btn" onclick="toggleMenu()">⭐</div>
+  <div class="star-btn" onclick="toggleMenu()">🌟</div>
+
   <div class="radial-menu" id="radialMenu">
-    <div class="lang python" onclick="languagePlan('python')">Python</div>
-    <div class="lang c" onclick="languagePlan('c')">C</div>
-    <div class="lang cpp" onclick="languagePlan('cpp')">C++</div>
-    <div class="lang java" onclick="languagePlan('java')">Java</div>
-    <div class="lang js" onclick="languagePlan('javascript')">JS</div>
+    <div class="lang python" onclick="languagePlanner('python')">Python</div>
+    <div class="lang c" onclick="languagePlanner('c')">C</div>
+    <div class="lang cpp" onclick="languagePlanner('cpp')">C++</div>
+    <div class="lang java" onclick="languagePlanner('java')">Java</div>
+    <div class="lang js" onclick="languagePlanner('javascript')">JS</div>
   </div>
 </div>
 
 <footer>
-  LearnSmart © 2026 • Learning made simple
+  LearnSmart © 2026 • Multi-Function Learning Platform
 </footer>
 
 <script>
+/* ===== STAR MENU ===== */
 function toggleMenu() {
   document.getElementById("radialMenu").classList.toggle("active");
 }
 
-function languagePlan(lang) {
+/* ===== LANGUAGE PLANNER ===== */
+function languagePlanner(lang) {
   const output = document.getElementById("output");
 
-  let plan = [];
-  let tools = [];
+  const data = {
+    python: {
+      plan: [
+        "Python basics & syntax",
+        "Control flow & functions",
+        "Data structures",
+        "OOP concepts",
+        "Mini projects"
+      ],
+      tools: [
+        ["Python Docs", "https://docs.python.org/3/"],
+        ["W3Schools Python", "https://www.w3schools.com/python/"]
+      ]
+    },
+    c: {
+      plan: [
+        "C syntax & basics",
+        "Pointers & memory",
+        "Arrays & strings",
+        "Structures & files"
+      ],
+      tools: [
+        ["GeeksforGeeks C", "https://www.geeksforgeeks.org/c-programming-language/"]
+      ]
+    },
+    cpp: {
+      plan: [
+        "C++ basics",
+        "OOP in C++",
+        "STL",
+        "Practice problems"
+      ],
+      tools: [
+        ["GeeksforGeeks C++", "https://www.geeksforgeeks.org/c-plus-plus/"]
+      ]
+    },
+    java: {
+      plan: [
+        "Java syntax",
+        "OOP concepts",
+        "Collections",
+        "Mini projects"
+      ],
+      tools: [
+        ["Java Docs", "https://docs.oracle.com/javase/"]
+      ]
+    },
+    javascript: {
+      plan: [
+        "JS basics",
+        "DOM manipulation",
+        "ES6 & async",
+        "Build small apps"
+      ],
+      tools: [
+        ["MDN JavaScript", "https://developer.mozilla.org/en-US/docs/Web/JavaScript"]
+      ]
+    }
+  };
 
-  if (lang === "python") {
-    plan = [
-      "Python syntax & basics",
-      "Control flow & functions",
-      "Lists, tuples, dictionaries",
-      "OOP concepts",
-      "Libraries & small projects"
-    ];
-    tools = [
-      {name:"Python Docs", link:"https://docs.python.org/3/"},
-      {name:"W3Schools Python", link:"https://www.w3schools.com/python/"},
-      {name:"freeCodeCamp", link:"https://www.freecodecamp.org/"}
-    ];
-  }
-
-  if (lang === "c") {
-    plan = [
-      "C basics & syntax",
-      "Pointers & memory",
-      "Arrays & strings",
-      "Structures & files",
-      "Practice programs"
-    ];
-    tools = [
-      {name:"GeeksforGeeks C", link:"https://www.geeksforgeeks.org/c-programming-language/"},
-      {name:"TutorialsPoint", link:"https://www.tutorialspoint.com/cprogramming/"}
-    ];
-  }
-
-  if (lang === "cpp") {
-    plan = [
-      "C++ basics",
-      "OOP in C++",
-      "STL",
-      "Memory management",
-      "Competitive programming practice"
-    ];
-    tools = [
-      {name:"GeeksforGeeks C++", link:"https://www.geeksforgeeks.org/c-plus-plus/"},
-      {name:"cplusplus.com", link:"https://cplusplus.com/"}
-    ];
-  }
-
-  if (lang === "java") {
-    plan = [
-      "Java syntax & JVM basics",
-      "OOP concepts",
-      "Collections framework",
-      "Exception handling",
-      "Mini projects"
-    ];
-    tools = [
-      {name:"Java Docs", link:"https://docs.oracle.com/javase/"},
-      {name:"W3Schools Java", link:"https://www.w3schools.com/java/"}
-    ];
-  }
-
-  if (lang === "javascript") {
-    plan = [
-      "JS basics & syntax",
-      "DOM manipulation",
-      "ES6 features",
-      "Async & promises",
-      "Build small apps"
-    ];
-    tools = [
-      {name:"MDN JS", link:"https://developer.mozilla.org/en-US/docs/Web/JavaScript"},
-      {name:"freeCodeCamp JS", link:"https://www.freecodecamp.org/"}
-    ];
-  }
-
-  let html = `<h3>📘 ${lang.toUpperCase()} Learning Plan</h3>`;
-  plan.forEach((s,i)=>html+=`<div class="step">🔹 ${s}</div>`);
-
-  html += `<h3>🛠 Resources</h3>`;
-  tools.forEach(t=>html+=`<div class="tool">🔗 <a href="${t.link}" target="_blank">${t.name}</a></div>`);
-
-  output.innerHTML = html;
+  renderPlan(lang.toUpperCase(), data[lang]);
   toggleMenu();
 }
 
-function runAgent() {
-  document.getElementById("output").innerHTML =
-    "<p>👉 Use the ⭐ button to choose a programming language.</p>";
+/* ===== TEXT PLANNER ===== */
+function textPlanner() {
+  const task = document.getElementById("taskInput").value.toLowerCase();
+
+  if (task.includes("dsa")) {
+    renderPlan("DSA", {
+      plan: [
+        "Programming basics",
+        "Arrays & Strings",
+        "Linked Lists",
+        "Stacks & Queues",
+        "Trees & Graphs",
+        "Dynamic Programming"
+      ],
+      tools: [
+        ["GeeksforGeeks DSA", "https://www.geeksforgeeks.org/dsa-tutorial/"],
+        ["LeetCode", "https://leetcode.com/"]
+      ]
+    });
+  } else {
+    renderPlan("Custom Learning Plan", {
+      plan: [
+        "Define the goal",
+        "Break into milestones",
+        "Choose learning resources",
+        "Practice consistently",
+        "Review & improve"
+      ],
+      tools: [
+        ["Google", "https://www.google.com"],
+        ["YouTube", "https://www.youtube.com"]
+      ]
+    });
+  }
+}
+
+/* ===== RENDER FUNCTION ===== */
+function renderPlan(title, data) {
+  const output = document.getElementById("output");
+  let html = `<h3>📘 ${title} Plan</h3>`;
+  data.plan.forEach(p => html += `<div class="step">🔹 ${p}</div>`);
+  html += `<h3>🛠 Resources</h3>`;
+  data.tools.forEach(t => {
+    html += `<div class="tool">🔗 <a href="${t[1]}" target="_blank">${t[0]}</a></div>`;
+  });
+  output.innerHTML = html;
 }
 </script>
 
