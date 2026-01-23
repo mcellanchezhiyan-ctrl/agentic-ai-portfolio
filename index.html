@@ -3,128 +3,122 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LearnSmart – Learning Platform</title>
+<title>LearnSmart – AI Learning Planner</title>
 
 <style>
+/* ===== BASE ===== */
 body {
   margin: 0;
   font-family: "Segoe UI", sans-serif;
-  background: #0f172a;
-  color: #e5e7eb;
-}
-
-nav {
-  background: #020617;
-  padding: 15px 25px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-nav h1 {
-  color: #38bdf8;
-  margin: 0;
-}
-
-header {
-  padding: 60px 20px;
-  text-align: center;
-  background: linear-gradient(135deg, #0284c7, #0ea5e9);
+  background: #f8fafc;
   color: #020617;
 }
 
+a { text-decoration: none; }
+
+/* ===== NAV ===== */
+nav {
+  background: white;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+nav h1 {
+  margin: 0;
+  color: #0284c7;
+}
+
+/* ===== HERO ===== */
+header {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #0284c7, #0ea5e9);
+  color: white;
+}
+
+header h2 { margin-bottom: 10px; }
+
+/* ===== SECTIONS ===== */
 section {
   max-width: 1100px;
   margin: auto;
-  padding: 40px 20px;
+  padding: 30px 20px;
 }
 
 .card {
-  background: #020617;
-  border-radius: 14px;
+  background: white;
+  border-radius: 16px;
   padding: 25px;
   margin-top: 25px;
-  box-shadow: 0 0 20px rgba(56,189,248,0.1);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
 }
 
+/* ===== INPUT ===== */
 input {
   width: 100%;
-  padding: 14px;
-  border-radius: 10px;
-  border: none;
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
   font-size: 1rem;
 }
 
 button {
-  margin-top: 10px;
-  background: #38bdf8;
-  color: #020617;
+  margin-top: 14px;
+  padding: 14px 28px;
+  border-radius: 14px;
   border: none;
-  padding: 12px 25px;
-  border-radius: 10px;
+  background: #0284c7;
+  color: white;
   font-size: 1rem;
   cursor: pointer;
 }
 
-button:hover {
-  background: #0ea5e9;
-}
+button:hover { background: #0369a1; }
 
-h3 {
-  color: #38bdf8;
-  margin-top: 25px;
-}
+/* ===== OUTPUT ===== */
+h3 { color: #0284c7; }
+.step { margin: 8px 0; }
+.tool a { color: #0284c7; }
 
-.step {
-  margin: 8px 0;
-}
-
-.tool a {
-  color: #38bdf8;
-  text-decoration: none;
-}
-
-/* ===== 🌟 STAR MENU ===== */
+/* ===== 🌟 STAR BUTTON ===== */
 .star-container {
   position: fixed;
   top: 18px;
-  right: 20px;
+  right: 18px;
   z-index: 1000;
 }
 
 .star-btn {
-  width: 55px;
-  height: 55px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-  background: #38bdf8;
-  color: #020617;
+  background: #0284c7;
+  color: white;
   font-size: 26px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  animation: spin 8s linear infinite;
 }
 
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-
+/* ===== RADIAL MENU ===== */
 .radial-menu {
   position: absolute;
-  width: 280px;
-  height: 280px;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
   background: rgba(2,6,23,0.95);
   top: 70px;
-  right: -110px;
+  right: -120px;
   display: none;
+  transform: rotate(0deg);
+  touch-action: none;
 }
 
-.radial-menu.active {
-  display: block;
-}
+.radial-menu.active { display: block; }
 
 .lang {
   position: absolute;
@@ -134,20 +128,39 @@ h3 {
   border-radius: 20px;
   cursor: pointer;
   font-size: 0.9rem;
+  user-select: none;
 }
 
-/* Language positions */
-.lang.python { top: 5%; left: 40%; }
-.lang.c      { top: 30%; left: 75%; }
-.lang.cpp    { top: 65%; left: 65%; }
-.lang.java   { top: 65%; left: 10%; }
-.lang.js     { top: 30%; left: 0%; }
+.lang.python { top: 8%; left: 45%; }
+.lang.c { top: 30%; left: 78%; }
+.lang.cpp { top: 62%; left: 70%; }
+.lang.java { top: 75%; left: 40%; }
+.lang.js { top: 60%; left: 8%; }
+.lang.go { top: 30%; left: 5%; }
+
+/* ===== ROBOT ===== */
+.robot {
+  position: fixed;
+  bottom: 20px;
+  right: 15px;
+  width: 100px;
+  z-index: 999;
+  animation: float 3s ease-in-out infinite;
+}
+
+.robot img { width: 100%; }
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0); }
+}
 
 footer {
   text-align: center;
   padding: 20px;
-  background: #020617;
-  color: #94a3b8;
+  background: white;
+  color: #64748b;
 }
 </style>
 </head>
@@ -159,14 +172,14 @@ footer {
 </nav>
 
 <header>
-  <h2>Learn • Plan • Track</h2>
-  <p>Type your goal or choose a language using 🌟</p>
+  <h2>Learn Anything. Step by Step.</h2>
+  <p>Ask a question or use 🌟 for quick language plans</p>
 </header>
 
 <section>
-  <!-- TEXT INPUT MODE -->
+  <!-- INPUT MODE -->
   <div class="card">
-    <input id="taskInput" placeholder="Example: Learn DSA / Learn Python / Learn Web Development">
+    <input id="taskInput" placeholder="Example: Learn DSA, Learn Python, Become Web Developer">
     <button onclick="textPlanner()">Generate Plan</button>
   </div>
 
@@ -174,104 +187,60 @@ footer {
   <div id="output" class="card"></div>
 </section>
 
-<!-- 🌟 STAR LANGUAGE MODE -->
+<!-- 🌟 STAR MENU -->
 <div class="star-container">
   <div class="star-btn" onclick="toggleMenu()">🌟</div>
-
   <div class="radial-menu" id="radialMenu">
-    <div class="lang python" onclick="languagePlanner('python')">Python</div>
-    <div class="lang c" onclick="languagePlanner('c')">C</div>
-    <div class="lang cpp" onclick="languagePlanner('cpp')">C++</div>
-    <div class="lang java" onclick="languagePlanner('java')">Java</div>
-    <div class="lang js" onclick="languagePlanner('javascript')">JS</div>
+    <div class="lang python" onclick="languagePlanner('Python')">Python</div>
+    <div class="lang c" onclick="languagePlanner('C')">C</div>
+    <div class="lang cpp" onclick="languagePlanner('C++')">C++</div>
+    <div class="lang java" onclick="languagePlanner('Java')">Java</div>
+    <div class="lang js" onclick="languagePlanner('JavaScript')">JS</div>
+    <div class="lang go" onclick="languagePlanner('Go')">Go</div>
   </div>
 </div>
 
+<!-- 🤖 ROBOT -->
+<div class="robot">
+  <img src="robot.png" alt="AI Robot Assistant">
+</div>
+
 <footer>
-  LearnSmart © 2026 • Multi-Function Learning Platform
+  LearnSmart © 2026 • AI-Inspired Learning Platform
 </footer>
 
 <script>
-/* ===== STAR MENU ===== */
+/* ===== TOGGLE MENU ===== */
 function toggleMenu() {
   document.getElementById("radialMenu").classList.toggle("active");
 }
 
-/* ===== LANGUAGE PLANNER ===== */
+/* ===== PLANNERS ===== */
 function languagePlanner(lang) {
-  const output = document.getElementById("output");
-
-  const data = {
-    python: {
-      plan: [
-        "Python basics & syntax",
-        "Control flow & functions",
-        "Data structures",
-        "OOP concepts",
-        "Mini projects"
-      ],
-      tools: [
-        ["Python Docs", "https://docs.python.org/3/"],
-        ["W3Schools Python", "https://www.w3schools.com/python/"]
-      ]
-    },
-    c: {
-      plan: [
-        "C syntax & basics",
-        "Pointers & memory",
-        "Arrays & strings",
-        "Structures & files"
-      ],
-      tools: [
-        ["GeeksforGeeks C", "https://www.geeksforgeeks.org/c-programming-language/"]
-      ]
-    },
-    cpp: {
-      plan: [
-        "C++ basics",
-        "OOP in C++",
-        "STL",
-        "Practice problems"
-      ],
-      tools: [
-        ["GeeksforGeeks C++", "https://www.geeksforgeeks.org/c-plus-plus/"]
-      ]
-    },
-    java: {
-      plan: [
-        "Java syntax",
-        "OOP concepts",
-        "Collections",
-        "Mini projects"
-      ],
-      tools: [
-        ["Java Docs", "https://docs.oracle.com/javase/"]
-      ]
-    },
-    javascript: {
-      plan: [
-        "JS basics",
-        "DOM manipulation",
-        "ES6 & async",
-        "Build small apps"
-      ],
-      tools: [
-        ["MDN JavaScript", "https://developer.mozilla.org/en-US/docs/Web/JavaScript"]
-      ]
-    }
-  };
-
-  renderPlan(lang.toUpperCase(), data[lang]);
+  renderPlan(
+    lang + " Learning Plan",
+    [
+      "Learn basics & syntax",
+      "Understand core concepts",
+      "Practice problems",
+      "Build mini projects",
+      "Revise & improve"
+    ],
+    [
+      ["Official Docs", "https://www.google.com/search?q=" + lang + "+documentation"],
+      ["GeeksforGeeks", "https://www.geeksforgeeks.org"]
+    ]
+  );
   toggleMenu();
 }
 
-/* ===== TEXT PLANNER ===== */
 function textPlanner() {
   const task = document.getElementById("taskInput").value.toLowerCase();
 
   if (task.includes("dsa")) {
-    renderPlan("DSA", {
-      plan: [
+    renderPlan(
+      "DSA Roadmap",
+      [
         "Programming basics",
         "Arrays & Strings",
         "Linked Lists",
@@ -279,38 +248,72 @@ function textPlanner() {
         "Trees & Graphs",
         "Dynamic Programming"
       ],
-      tools: [
+      [
         ["GeeksforGeeks DSA", "https://www.geeksforgeeks.org/dsa-tutorial/"],
-        ["LeetCode", "https://leetcode.com/"]
+        ["LeetCode", "https://leetcode.com"]
       ]
-    });
+    );
   } else {
-    renderPlan("Custom Learning Plan", {
-      plan: [
+    renderPlan(
+      "Custom Learning Plan",
+      [
         "Define the goal",
-        "Break into milestones",
-        "Choose learning resources",
-        "Practice consistently",
+        "Split into milestones",
+        "Choose resources",
+        "Practice regularly",
         "Review & improve"
       ],
-      tools: [
-        ["Google", "https://www.google.com"],
-        ["YouTube", "https://www.youtube.com"]
+      [
+        ["YouTube", "https://youtube.com"],
+        ["Google", "https://google.com"]
       ]
-    });
+    );
   }
 }
 
-/* ===== RENDER FUNCTION ===== */
-function renderPlan(title, data) {
-  const output = document.getElementById("output");
-  let html = `<h3>📘 ${title} Plan</h3>`;
-  data.plan.forEach(p => html += `<div class="step">🔹 ${p}</div>`);
-  html += `<h3>🛠 Resources</h3>`;
-  data.tools.forEach(t => {
-    html += `<div class="tool">🔗 <a href="${t[1]}" target="_blank">${t[0]}</a></div>`;
-  });
-  output.innerHTML = html;
+function renderPlan(title, steps, tools) {
+  let html = `<h3>${title}</h3>`;
+  steps.forEach(s => html += `<div class="step">🔹 ${s}</div>`);
+  html += `<h3>Resources</h3>`;
+  tools.forEach(t => html += `<div class="tool">🔗 <a href="${t[1]}" target="_blank">${t[0]}</a></div>`);
+  document.getElementById("output").innerHTML = html;
+}
+
+/* ===== ROTATION LOGIC ===== */
+const menu = document.getElementById("radialMenu");
+let dragging = false, startAngle = 0, currentRotation = 0;
+
+function angle(x,y,cx,cy){ return Math.atan2(y-cy,x-cx)*180/Math.PI; }
+
+menu.addEventListener("touchstart", start);
+menu.addEventListener("mousedown", start);
+document.addEventListener("touchmove", move);
+document.addEventListener("mousemove", move);
+document.addEventListener("touchend", end);
+document.addEventListener("mouseup", end);
+
+function start(e){
+  dragging=true;
+  const r=menu.getBoundingClientRect();
+  const cx=r.left+r.width/2, cy=r.top+r.height/2;
+  const p=e.touches?e.touches[0]:e;
+  startAngle=angle(p.clientX,p.clientY,cx,cy);
+}
+
+function move(e){
+  if(!dragging)return;
+  const r=menu.getBoundingClientRect();
+  const cx=r.left+r.width/2, cy=r.top+r.height/2;
+  const p=e.touches?e.touches[0]:e;
+  const a=angle(p.clientX,p.clientY,cx,cy);
+  menu.style.transform=`rotate(${currentRotation+(a-startAngle)}deg)`;
+}
+
+function end(){
+  if(!dragging)return;
+  const m=menu.style.transform.match(/rotate\(([-\d.]+)deg\)/);
+  if(m) currentRotation=parseFloat(m[1]);
+  dragging=false;
 }
 </script>
 
