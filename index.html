@@ -3,37 +3,67 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Agentic AI Planner</title>
+  <title>LearnSmart – AI Learning Planner</title>
 
-  <!-- ===== CSS ===== -->
   <style>
     body {
       margin: 0;
       font-family: "Segoe UI", sans-serif;
-      background: linear-gradient(135deg, #0f172a, #020617);
+      background: #0f172a;
       color: #e5e7eb;
     }
 
+    /* ===== NAVBAR ===== */
+    nav {
+      background: #020617;
+      padding: 15px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav h1 {
+      margin: 0;
+      color: #38bdf8;
+      font-size: 1.5rem;
+    }
+
+    nav a {
+      color: #cbd5f5;
+      margin-left: 20px;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      color: #38bdf8;
+    }
+
+    /* ===== HERO ===== */
     header {
+      padding: 70px 20px;
       text-align: center;
-      padding: 50px 20px;
       background: linear-gradient(135deg, #0284c7, #0ea5e9);
       color: #020617;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
+    header h2 {
+      font-size: 2.6rem;
+      margin-bottom: 15px;
     }
 
     header p {
       font-size: 1.1rem;
-      max-width: 800px;
-      margin: 10px auto 0;
+      max-width: 900px;
+      margin: auto;
     }
 
+    /* ===== LAYOUT ===== */
     section {
-      max-width: 1000px;
+      max-width: 1100px;
       margin: auto;
       padding: 40px 20px;
     }
@@ -43,7 +73,7 @@
       border-radius: 14px;
       padding: 25px;
       margin-top: 25px;
-      box-shadow: 0 0 30px rgba(56,189,248,0.12);
+      box-shadow: 0 0 25px rgba(56,189,248,0.08);
     }
 
     input {
@@ -59,7 +89,7 @@
       background: #38bdf8;
       color: #020617;
       border: none;
-      padding: 12px 26px;
+      padding: 12px 28px;
       font-size: 1rem;
       border-radius: 10px;
       cursor: pointer;
@@ -69,14 +99,14 @@
       background: #0ea5e9;
     }
 
-    h2 {
+    h3 {
       color: #38bdf8;
       margin-top: 30px;
     }
 
     .step {
       margin: 10px 0;
-      padding-left: 10px;
+      padding-left: 8px;
     }
 
     .tool {
@@ -92,122 +122,166 @@
       text-decoration: underline;
     }
 
+    /* ===== FEATURE GRID ===== */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .feature-box {
+      background: #020617;
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid #1e293b;
+    }
+
+    .feature-box h4 {
+      color: #38bdf8;
+      margin-bottom: 10px;
+    }
+
     footer {
       text-align: center;
       padding: 25px;
       color: #94a3b8;
       font-size: 0.9rem;
+      background: #020617;
+      margin-top: 50px;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- ===== HEADER ===== -->
+  <!-- ===== NAVBAR ===== -->
+  <nav>
+    <h1>LearnSmart</h1>
+    <div>
+      <a href="#planner">Planner</a>
+      <a href="#features">Features</a>
+      <a href="#about">About</a>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
   <header>
-    <h1>🤖 Agentic AI Planner</h1>
+    <h2>Learn Anything. Step by Step.</h2>
     <p>
-      A zero-cost agentic AI simulation that creates step-by-step plans and
-      recommends the best tools and platforms to execute your task.
+      LearnSmart helps you break down any learning goal or project into
+      structured steps and recommends the best platforms, tools, and resources
+      to get started immediately.
     </p>
   </header>
 
-  <!-- ===== MAIN SECTION ===== -->
-  <section>
-
+  <!-- ===== PLANNER ===== -->
+  <section id="planner">
     <div class="card">
-      <input
-        id="taskInput"
-        placeholder="Example: Build a plan for learning DSA"
-      />
-      <button onclick="runAgent()">Run Agent</button>
+      <input id="taskInput" placeholder="Example: Create a plan to learn DSA" />
+      <button onclick="runAgent()">Generate Learning Plan</button>
     </div>
 
     <div id="output" class="card"></div>
+  </section>
 
+  <!-- ===== FEATURES ===== -->
+  <section id="features">
+    <h3>Why LearnSmart?</h3>
+    <div class="features">
+      <div class="feature-box">
+        <h4>🧠 Smart Planning</h4>
+        <p>Automatically breaks complex goals into clear learning steps.</p>
+      </div>
+      <div class="feature-box">
+        <h4>🛠 Tool Suggestions</h4>
+        <p>Recommends the best platforms, apps, and websites.</p>
+      </div>
+      <div class="feature-box">
+        <h4>⏱ Time Efficient</h4>
+        <p>No confusion. Start learning with a clear roadmap.</p>
+      </div>
+      <div class="feature-box">
+        <h4>📚 Multi-Domain</h4>
+        <p>DSA, Web Dev, AI, Programming, and more.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about">
+    <h3>About LearnSmart</h3>
+    <div class="card">
+      <p>
+        LearnSmart is a productivity-focused learning platform designed to help
+        students and self-learners convert ideas into action.
+        Instead of wasting time searching everywhere, you get a structured
+        roadmap and trusted resources instantly.
+      </p>
+    </div>
   </section>
 
   <!-- ===== FOOTER ===== -->
   <footer>
-    Built with ❤️ using Agentic AI principles | Zero Cost | Resume Ready
+    LearnSmart © 2026 · Built for learners · Zero cost · Always improving
   </footer>
 
-  <!-- ===== JAVASCRIPT ===== -->
+  <!-- ===== JAVASCRIPT (AGENT LOGIC) ===== -->
   <script>
     function runAgent() {
       const task = document.getElementById("taskInput").value.toLowerCase();
       const output = document.getElementById("output");
 
       if (!task) {
-        output.innerHTML = "⚠️ Please enter a task.";
+        output.innerHTML = "⚠️ Please enter a learning goal or project.";
         return;
       }
 
       let plan = [];
       let tools = [];
 
-      // ===== AGENT INTENT LOGIC =====
       if (task.includes("dsa")) {
         plan = [
-          "Choose a programming language (C++, Java, or Python)",
+          "Choose a programming language (C++ / Java / Python)",
           "Learn time and space complexity",
           "Study arrays, strings, and recursion",
           "Master linked lists, stacks, and queues",
           "Learn trees and binary search trees",
-          "Study graphs and graph traversal algorithms",
+          "Understand graphs and traversal algorithms",
           "Practice dynamic programming",
-          "Solve problems daily and revise concepts"
+          "Solve problems daily and revise"
         ];
 
         tools = [
-          { name: "GeeksforGeeks – DSA Tutorial", link: "https://www.geeksforgeeks.org/dsa-tutorial/" },
-          { name: "LeetCode – Practice Problems", link: "https://leetcode.com/" },
-          { name: "Coursera – Data Structures Courses", link: "https://www.coursera.org/search?query=data%20structures" },
+          { name: "GeeksforGeeks – DSA", link: "https://www.geeksforgeeks.org/dsa-tutorial/" },
+          { name: "LeetCode", link: "https://leetcode.com/" },
+          { name: "Coursera", link: "https://www.coursera.org/search?query=data%20structures" },
           { name: "freeCodeCamp (YouTube)", link: "https://www.youtube.com/@freecodecamp" }
         ];
-      }
-
-      else if (task.includes("web")) {
-        plan = [
-          "Learn HTML basics",
-          "Understand CSS and responsive design",
-          "Learn JavaScript fundamentals",
-          "Build small projects",
-          "Learn a framework (React / Vue)",
-          "Deploy projects online"
-        ];
-
-        tools = [
-          { name: "MDN Web Docs", link: "https://developer.mozilla.org/" },
-          { name: "freeCodeCamp", link: "https://www.freecodecamp.org/" },
-          { name: "CSS-Tricks", link: "https://css-tricks.com/" }
-        ];
-      }
-
+      } 
       else {
         plan = [
-          "Analyze the task goal",
-          "Break the task into milestones",
-          "Identify required skills",
-          "Select tools and learning resources",
-          "Execute step by step",
-          "Review progress and improve"
+          "Define the learning goal",
+          "Break it into small milestones",
+          "Identify core concepts",
+          "Choose learning platforms",
+          "Practice regularly",
+          "Review and improve"
         ];
 
         tools = [
-          { name: "Google Search", link: "https://www.google.com" },
-          { name: "Notion", link: "https://www.notion.so" },
-          { name: "YouTube", link: "https://www.youtube.com" }
+          { name: "Google", link: "https://www.google.com" },
+          { name: "YouTube", link: "https://www.youtube.com" },
+          { name: "Notion", link: "https://www.notion.so" }
         ];
       }
 
-      // ===== RENDER OUTPUT =====
-      let html = `<h2>🧠 Step-by-Step Plan</h2>`;
-      plan.forEach((step, index) => {
-        html += `<div class="step">🔹 Step ${index + 1}: ${step}</div>`;
+      let html = `<h3>📌 Learning Roadmap</h3>`;
+      plan.forEach((step, i) => {
+        html += `<div class="step">🔹 Step ${i + 1}: ${step}</div>`;
       });
 
-      html += `<h2>🛠 Suggested Tools & Apps</h2>`;
+      html += `<h3>🛠 Recommended Platforms & Tools</h3>`;
       tools.forEach(tool => {
         html += `<div class="tool">🔗 <a href="${tool.link}" target="_blank">${tool.name}</a></div>`;
       });
