@@ -134,3 +134,37 @@ body {
 .course-details ul li {
   margin-bottom: 6px;
 }
+.comparison {
+  padding: 20px;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #020617;
+  border-radius: 12px;
+}
+
+th, td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #1e293b;
+}
+
+th {
+  color: #38bdf8;
+  font-weight: bold;
+}
+
+tr:hover {
+  background: #020617;
+}
+.plan-box hr {
+  border: 0;
+  border-top: 1px solid #1e293b;
+  margin: 10px 0;
+}
