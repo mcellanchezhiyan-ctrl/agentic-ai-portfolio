@@ -3,10 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LearnSmart – Learning Planner</title>
+<title>LearnSmart – Smart Learning Planner</title>
 
 <style>
-/* ===== BASE ===== */
 body {
   margin: 0;
   font-family: "Segoe UI", sans-serif;
@@ -14,15 +13,9 @@ body {
   color: #020617;
 }
 
-a { text-decoration: none; }
-
-/* ===== NAV ===== */
 nav {
-  background: #ffffff;
+  background: white;
   padding: 14px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
@@ -31,15 +24,13 @@ nav h1 {
   color: #0284c7;
 }
 
-/* ===== HERO ===== */
 header {
-  text-align: center;
   padding: 60px 20px;
-  background: linear-gradient(135deg, #0284c7, #0ea5e9);
+  text-align: center;
+  background: linear-gradient(135deg,#0284c7,#0ea5e9);
   color: white;
 }
 
-/* ===== SECTION ===== */
 section {
   max-width: 1100px;
   margin: auto;
@@ -54,7 +45,6 @@ section {
   box-shadow: 0 10px 25px rgba(0,0,0,0.06);
 }
 
-/* ===== INPUT ===== */
 input {
   width: 100%;
   padding: 16px;
@@ -65,7 +55,7 @@ input {
 
 button {
   margin-top: 14px;
-  padding: 14px 28px;
+  padding: 14px 26px;
   border-radius: 14px;
   border: none;
   background: #0284c7;
@@ -76,12 +66,33 @@ button {
 
 button:hover { background: #0369a1; }
 
-/* ===== OUTPUT ===== */
 h3 { color: #0284c7; margin-top: 20px; }
 .step { margin: 8px 0; }
-.tool a { color: #0284c7; }
+a { color: #0284c7; }
 
-/* ===== 🌟 STAR ===== */
+/* Choice chips */
+.choices {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.choices span {
+  background: #e0f2fe;
+  color: #0369a1;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.choices span:hover {
+  background: #0284c7;
+  color: white;
+}
+
+/* 🌟 Star */
 .star-container {
   position: fixed;
   top: 18px;
@@ -102,17 +113,16 @@ h3 { color: #0284c7; margin-top: 20px; }
   cursor: pointer;
 }
 
-/* ===== RADIAL MENU ===== */
+/* Radial menu */
 .radial-menu {
   position: absolute;
-  width: 300px;
-  height: 300px;
+  width: 280px;
+  height: 280px;
   border-radius: 50%;
   background: rgba(2,6,23,0.95);
   top: 70px;
   right: -120px;
   display: none;
-  transform: rotate(0deg);
   touch-action: none;
 }
 
@@ -126,17 +136,16 @@ h3 { color: #0284c7; margin-top: 20px; }
   border-radius: 20px;
   cursor: pointer;
   font-size: 0.9rem;
-  user-select: none;
 }
 
-/* Circular positions */
+/* Positions */
 .lang.python { top: 8%; left: 45%; }
-.lang.c { top: 30%; left: 78%; }
-.lang.cpp { top: 62%; left: 70%; }
-.lang.java { top: 75%; left: 40%; }
+.lang.java { top: 30%; left: 78%; }
+.lang.web { top: 62%; left: 70%; }
+.lang.dsa { top: 75%; left: 40%; }
 .lang.js { top: 60%; left: 8%; }
 
-/* ===== ROBOT ===== */
+/* Robot */
 .robot {
   position: fixed;
   bottom: 20px;
@@ -180,7 +189,6 @@ h3 { color: #0284c7; margin-top: 20px; }
 footer {
   text-align: center;
   padding: 20px;
-  background: white;
   color: #64748b;
 }
 </style>
@@ -188,157 +196,115 @@ footer {
 
 <body>
 
-<nav>
-  <h1>LearnSmart</h1>
-</nav>
+<nav><h1>LearnSmart</h1></nav>
 
 <header>
   <h2>Learn Anything. Step by Step.</h2>
-  <p>Type your goal or use 🌟 to pick a programming language</p>
+  <p>Choose a path or type your goal</p>
 </header>
 
 <section>
   <div class="card">
-    <input id="taskInput" placeholder="Example: Learn DSA, Learn Python">
+    <input id="taskInput" placeholder="What do you want to learn?">
+
+    <div class="choices">
+      <span onclick="quickPick('DSA')">DSA</span>
+      <span onclick="quickPick('Python')">Python</span>
+      <span onclick="quickPick('Java')">Java</span>
+      <span onclick="quickPick('Web Development')">Web Development</span>
+    </div>
+
     <button onclick="textPlanner()">Generate Plan</button>
   </div>
 
   <div id="output" class="card"></div>
 </section>
 
-<!-- 🌟 STAR -->
+<!-- 🌟 -->
 <div class="star-container">
   <div class="star-btn" onclick="toggleMenu()">🌟</div>
   <div class="radial-menu" id="radialMenu">
     <div class="lang python" onclick="languagePlanner('Python')">Python</div>
-    <div class="lang c" onclick="languagePlanner('C')">C</div>
-    <div class="lang cpp" onclick="languagePlanner('C++')">C++</div>
     <div class="lang java" onclick="languagePlanner('Java')">Java</div>
-    <div class="lang js" onclick="languagePlanner('JavaScript')">JS</div>
+    <div class="lang web" onclick="languagePlanner('Web')">Web</div>
+    <div class="lang dsa" onclick="languagePlanner('DSA')">DSA</div>
+    <div class="lang js" onclick="languagePlanner('JS')">JS</div>
   </div>
 </div>
 
-<!-- 🤖 ROBOT -->
+<!-- 🤖 -->
 <div class="robot">
   <div class="robot-bubble" id="robotBubble">
-    👋 Hi! Choose a learning path to start.
+    👋 Hi! Pick a learning path.
   </div>
-  <img src="robot.png" alt="Robot Assistant">
+  <img src="robot.png" alt="AI Robot">
 </div>
 
-<footer>
-  LearnSmart © 2026 • Learning made simple
-</footer>
+<footer>LearnSmart © 2026</footer>
 
 <script>
-/* ===== ROBOT SPEECH ===== */
 function robotSay(msg) {
   document.getElementById("robotBubble").innerText = msg;
 }
 
-/* ===== STAR TOGGLE ===== */
-function toggleMenu() {
-  document.getElementById("radialMenu").classList.toggle("active");
-  robotSay("🌟 Nice choice! Pick a language.");
+function quickPick(topic) {
+  document.getElementById("taskInput").value = topic;
+  robotSay(`👍 Nice choice! Let's plan ${topic}.`);
 }
 
-/* ===== PRE-PLANNED DATA ===== */
-const COURSES = {
-  Python: {
-    time: "4–6 weeks",
-    plan: [
-      "Basics & syntax",
-      "Control flow",
-      "Functions",
-      "Data structures",
-      "Mini projects"
-    ],
-    learn: [
-      ["Python Docs", "https://docs.python.org/3/"],
-      ["W3Schools", "https://www.w3schools.com/python/"]
-    ],
-    practice: [
-      ["HackerRank", "https://hackerrank.com"]
-    ]
-  },
+function toggleMenu() {
+  document.getElementById("radialMenu").classList.toggle("active");
+  robotSay("🌟 Pick a language to start.");
+}
+
+const PLANS = {
   DSA: {
     time: "3–4 months",
-    plan: [
-      "Programming basics",
-      "Arrays & Strings",
-      "Linked Lists",
-      "Stacks & Queues",
-      "Trees & Graphs",
-      "Dynamic Programming"
-    ],
-    learn: [
-      ["GeeksforGeeks", "https://www.geeksforgeeks.org/dsa-tutorial/"]
-    ],
-    practice: [
-      ["LeetCode", "https://leetcode.com"]
-    ]
+    steps: ["Arrays", "Linked Lists", "Stacks", "Trees", "Graphs", "DP"],
+    learn: [["GeeksforGeeks","https://www.geeksforgeeks.org/dsa-tutorial/"]],
+    practice: [["LeetCode","https://leetcode.com"]]
+  },
+  Python: {
+    time: "4–6 weeks",
+    steps: ["Basics","Control Flow","Functions","Data Structures","Projects"],
+    learn: [["Python Docs","https://docs.python.org/3/"]],
+    practice: [["HackerRank","https://hackerrank.com"]]
+  },
+  Java: {
+    time: "6–8 weeks",
+    steps: ["Syntax","OOP","Collections","Exception Handling"],
+    learn: [["Java Docs","https://docs.oracle.com/javase/"]],
+    practice: [["CodeChef","https://codechef.com"]]
+  },
+  Web: {
+    time: "2–3 months",
+    steps: ["HTML","CSS","JavaScript","Projects"],
+    learn: [["MDN","https://developer.mozilla.org"]],
+    practice: [["Frontend Mentor","https://frontendmentor.io"]]
   }
 };
 
-/* ===== RENDER ===== */
-function render(title, data) {
-  let html = `<h3>${title}</h3>`;
-  html += `<p><b>Estimated time:</b> ${data.time}</p>`;
-  data.plan.forEach(p => html += `<div class="step">🔹 ${p}</div>`);
-  html += "<h3>Learn</h3>";
-  data.learn.forEach(l => html += `<div class="tool">🔗 <a href="${l[1]}" target="_blank">${l[0]}</a></div>`);
-  html += "<h3>Practice</h3>";
-  data.practice.forEach(p => html += `<div class="tool">🔗 <a href="${p[1]}" target="_blank">${p[0]}</a></div>`);
-  document.getElementById("output").innerHTML = html;
+function render(title, d) {
+  let html = `<h3>${title}</h3><p><b>Duration:</b> ${d.time}</p>`;
+  d.steps.forEach(s=>html+=`<div class="step">🔹 ${s}</div>`);
+  html+=`<h3>Learn</h3>`;
+  d.learn.forEach(l=>html+=`🔗 <a href="${l[1]}" target="_blank">${l[0]}</a><br>`);
+  html+=`<h3>Practice</h3>`;
+  d.practice.forEach(p=>html+=`🔗 <a href="${p[1]}" target="_blank">${p[0]}</a><br>`);
+  document.getElementById("output").innerHTML=html;
 }
 
-/* ===== LANGUAGE MODE ===== */
-function languagePlanner(lang) {
-  robotSay(`🔥 Great choice! You’re going to be a ${lang} developer.`);
-  render(`${lang} Learning Plan`, COURSES[lang === "Python" ? "Python" : "DSA"]);
-  toggleMenu();
-}
-
-/* ===== TEXT MODE ===== */
 function textPlanner() {
-  robotSay("🧠 Smart move! Planning first makes learning easier.");
-  render("DSA Learning Plan", COURSES.DSA);
+  const t = document.getElementById("taskInput").value;
+  languagePlanner(t);
 }
 
-/* ===== ROTATION FIX (BUTTONS STAY STRAIGHT) ===== */
-const wheel = document.getElementById("radialMenu");
-let dragging = false, startAngle = 0, rotation = 0;
-
-function angle(x,y,cx,cy){ return Math.atan2(y-cy,x-cx)*180/Math.PI; }
-
-wheel.addEventListener("mousedown", start);
-wheel.addEventListener("touchstart", start);
-document.addEventListener("mousemove", move);
-document.addEventListener("touchmove", move);
-document.addEventListener("mouseup", end);
-document.addEventListener("touchend", end);
-
-function start(e){
-  dragging = true;
-  const r = wheel.getBoundingClientRect();
-  const p = e.touches ? e.touches[0] : e;
-  startAngle = angle(p.clientX,p.clientY,r.left+r.width/2,r.top+r.height/2);
+function languagePlanner(lang) {
+  const key = lang.includes("Web") ? "Web" : lang;
+  robotSay(`🚀 Great choice! ${key} will shape your future.`);
+  render(`${key} Learning Plan`, PLANS[key] || PLANS.DSA);
+  document.getElementById("radialMenu").classList.remove("active");
 }
-
-function move(e){
-  if(!dragging) return;
-  const r = wheel.getBoundingClientRect();
-  const p = e.touches ? e.touches[0] : e;
-  const a = angle(p.clientX,p.clientY,r.left+r.width/2,r.top+r.height/2);
-  rotation += a - startAngle;
-  wheel.style.transform = `rotate(${rotation}deg)`;
-  wheel.querySelectorAll(".lang").forEach(btn=>{
-    btn.style.transform = `rotate(${-rotation}deg)`;
-  });
-  startAngle = a;
-}
-
-function end(){ dragging = false; }
 </script>
 
 </body>
