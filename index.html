@@ -1,64 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>LearnSmart</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
 
-<header class="top-header">
-  <h1>LearnSmart</h1>
-</header>
+  <!-- HEADER -->
+  <header class="top-header">
+    <h1>LearnSmart</h1>
+    <p>Your AI-powered learning planner</p>
+  </header>
 
-<section class="search-section">
-  <input type="text" placeholder="Search what you want to learn...">
-</section>
-
-<section class="courses-section">
-  <h2>Special Courses</h2>
-<section class="plan-section">
-  <h2>Your Learning Plan</h2>
-  <div id="planOutput" class="plan-box">
-    <p>Select a programming language from the arc-reactor 🌟</p>
+  <!-- ARC REACTOR (TOP) -->
+  <div class="arc-container">
+    <div class="arc-ring">
+      <span onclick="generateLanguagePlan('Python')">Python</span>
+      <span onclick="generateLanguagePlan('Java')">Java</span>
+      <span onclick="generateLanguagePlan('C++')">C++</span>
+      <span onclick="generateLanguagePlan('JavaScript')">JS</span>
+    </div>
+    <p class="arc-hint">Drag to rotate • Tap to generate plan</p>
   </div>
-</section>
-  <div class="course-grid">
 
-    <div class="course-card" onclick="openCourse('dsa')">
-      <img src="assets/images/dsa.png">
-      <h3>Data Structures & Algorithms</h3>
+  <!-- SEARCH -->
+  <section class="search-section">
+    <input type="text" placeholder="Search what you want to learn..." />
+  </section>
+
+  <!-- SPECIAL COURSES -->
+  <section class="courses-section">
+    <h2>Special Courses</h2>
+
+    <div class="course-grid">
+      <div class="course-card" onclick="openCourse('dsa')">
+        <img src="assets/images/dsa.png" />
+        <h3>DSA</h3>
+      </div>
+
+      <div class="course-card" onclick="openCourse('web')">
+        <img src="assets/images/web.jpg" />
+        <h3>Web Development</h3>
+      </div>
+
+      <div class="course-card" onclick="openCourse('ai')">
+        <img src="assets/images/ai.jpg" />
+        <h3>AI</h3>
+      </div>
+
+      <div class="course-card" onclick="openCourse('ml')">
+        <img src="assets/images/ml.png" />
+        <h3>Machine Learning</h3>
+      </div>
     </div>
+  </section>
 
-    <div class="course-card">
-      <img src="assets/images/web.jpg">
-      <h3>Web Development</h3>
+  <!-- PLAN OUTPUT -->
+  <section class="plan-section">
+    <h2>Your Learning Plan</h2>
+    <div id="planOutput" class="plan-box">
+      <p>Select a programming language from the arc reactor 🌟</p>
     </div>
+  </section>
 
-    <div class="course-card">
-      <img src="assets/images/ai.png">
-      <h3>Artificial Intelligence</h3>
-    </div>
-
-    <div class="course-card">
-      <img src="assets/images/ml.jpg">
-      <h3>Machine Learning</h3>
-    </div>
-
-  </div>
-</section>
-
-<!-- 🌟 ARC REACTOR -->
-<div class="arc-container">
-  <div class="arc-ring">
-  <span onclick="generateLanguagePlan('Python')">Python</span>
-  <span onclick="generateLanguagePlan('Java')">Java</span>
-  <span onclick="generateLanguagePlan('C++')">C++</span>
-  <span onclick="generateLanguagePlan('JavaScript')">JS</span>
-</div>
-</div>
-
-<script src="js/app.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>

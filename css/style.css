@@ -2,15 +2,55 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: #f8fafc;
+  color: #0f172a;
 }
 
+/* HEADER */
 .top-header {
   text-align: center;
   padding: 20px;
-  background: #0ea5e9;
+  background: linear-gradient(135deg, #0284c7, #0ea5e9);
   color: white;
 }
 
+/* ARC REACTOR */
+.arc-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.arc-ring {
+  width: 130px;
+  height: 130px;
+  border: 6px solid #38bdf8;
+  border-top: 6px solid transparent;
+  border-radius: 50%;
+  margin: auto;
+  position: relative;
+  cursor: grab;
+}
+
+.arc-ring span {
+  position: absolute;
+  background: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  user-select: none;
+}
+
+.arc-ring span:nth-child(1) { top: -12px; left: 40px; }
+.arc-ring span:nth-child(2) { right: -22px; top: 45px; }
+.arc-ring span:nth-child(3) { bottom: -12px; left: 40px; }
+.arc-ring span:nth-child(4) { left: -22px; top: 45px; }
+
+.arc-hint {
+  font-size: 12px;
+  color: #475569;
+  margin-top: 6px;
+}
+
+/* SEARCH */
 .search-section {
   padding: 20px;
   text-align: center;
@@ -20,16 +60,17 @@ body {
   width: 80%;
   padding: 14px;
   border-radius: 12px;
-  border: 1px solid #ccc;
+  border: 1px solid #cbd5f5;
 }
 
+/* COURSES */
 .courses-section {
   padding: 20px;
 }
 
 .course-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 20px;
 }
 
@@ -39,55 +80,17 @@ body {
   padding: 10px;
   text-align: center;
   cursor: pointer;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
 }
 
 .course-card img {
   width: 100%;
+  height: 140px;
+  object-fit: cover;
   border-radius: 12px;
 }
 
-.course-details {
-  padding: 20px;
-}
-
-/* ARC REACTOR */
-.arc-ring {
-  width: 120px;
-  height: 120px;
-  border: 6px solid #38bdf8;
-  border-top: 6px solid transparent;
-  border-radius: 50%;
-  position: relative;
-}
-
-.arc-ring {
-  width: 120px;
-  height: 120px;
-  border: 6px solid #38bdf8;
-  border-top: 6px solid transparent;
-  border-radius: 50%;
-  animation: spin 8s linear infinite;
-  position: relative;
-}
-
-.arc-ring span {
-  position: absolute;
-  font-size: 12px;
-  background: white;
-  padding: 4px 8px;
-  border-radius: 12px;
-}
-
-.arc-ring span:nth-child(1) { top: -10px; left: 40px; }
-.arc-ring span:nth-child(2) { right: -20px; top: 40px; }
-.arc-ring span:nth-child(3) { bottom: -10px; left: 40px; }
-.arc-ring span:nth-child(4) { left: -20px; top: 40px; }
-
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
+/* PLAN */
 .plan-section {
   padding: 20px;
 }
