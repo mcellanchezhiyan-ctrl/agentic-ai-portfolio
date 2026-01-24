@@ -1,311 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LearnSmart – Smart Learning Planner</title>
-
-<style>
-body {
-  margin: 0;
-  font-family: "Segoe UI", sans-serif;
-  background: #f8fafc;
-  color: #020617;
-}
-
-nav {
-  background: white;
-  padding: 14px 20px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-}
-
-nav h1 {
-  margin: 0;
-  color: #0284c7;
-}
-
-header {
-  padding: 60px 20px;
-  text-align: center;
-  background: linear-gradient(135deg,#0284c7,#0ea5e9);
-  color: white;
-}
-
-section {
-  max-width: 1100px;
-  margin: auto;
-  padding: 30px 20px;
-}
-
-.card {
-  background: white;
-  border-radius: 16px;
-  padding: 25px;
-  margin-top: 25px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-}
-
-input {
-  width: 100%;
-  padding: 16px;
-  border-radius: 14px;
-  border: 1px solid #e5e7eb;
-  font-size: 1rem;
-}
-
-button {
-  margin-top: 14px;
-  padding: 14px 26px;
-  border-radius: 14px;
-  border: none;
-  background: #0284c7;
-  color: white;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-button:hover { background: #0369a1; }
-
-h3 { color: #0284c7; margin-top: 20px; }
-.step { margin: 8px 0; }
-a { color: #0284c7; }
-
-/* Choice chips */
-.choices {
-  margin-top: 12px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.choices span {
-  background: #e0f2fe;
-  color: #0369a1;
-  padding: 8px 14px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  cursor: pointer;
-}
-
-.choices span:hover {
-  background: #0284c7;
-  color: white;
-}
-
-/* 🌟 Star */
-.star-container {
-  position: fixed;
-  top: 18px;
-  right: 18px;
-  z-index: 1000;
-}
-
-.star-btn {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: #0284c7;
-  color: white;
-  font-size: 26px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-
-/* Radial menu */
-.radial-menu {
-  position: absolute;
-  width: 280px;
-  height: 280px;
-  border-radius: 50%;
-  background: rgba(2,6,23,0.95);
-  top: 70px;
-  right: -120px;
-  display: none;
-  touch-action: none;
-}
-
-.radial-menu.active { display: block; }
-
-.lang {
-  position: absolute;
-  background: #38bdf8;
-  color: #020617;
-  padding: 8px 14px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 0.9rem;
-}
-
-/* Positions */
-.lang.python { top: 8%; left: 45%; }
-.lang.java { top: 30%; left: 78%; }
-.lang.web { top: 62%; left: 70%; }
-.lang.dsa { top: 75%; left: 40%; }
-.lang.js { top: 60%; left: 8%; }
-
-/* Robot */
-.robot {
-  position: fixed;
-  bottom: 20px;
-  right: 15px;
-  width: 110px;
-  z-index: 999;
-  animation: float 3s ease-in-out infinite;
-}
-
-.robot img { width: 100%; }
-
-.robot-bubble {
-  position: absolute;
-  bottom: 115px;
-  right: 0;
-  background: white;
-  color: #020617;
-  padding: 10px 14px;
-  border-radius: 14px;
-  font-size: 0.85rem;
-  max-width: 220px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-}
-
-.robot-bubble::after {
-  content: "";
-  position: absolute;
-  bottom: -8px;
-  right: 20px;
-  border-width: 8px 8px 0;
-  border-style: solid;
-  border-color: white transparent transparent;
-}
-
-@keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-  100% { transform: translateY(0); }
-}
-
-footer {
-  text-align: center;
-  padding: 20px;
-  color: #64748b;
-}
-</style>
+  <meta charset="UTF-8">
+  <title>LearnSmart</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
 
-<nav><h1>LearnSmart</h1></nav>
-
-<header>
-  <h2>Learn Anything. Step by Step.</h2>
-  <p>Choose a path or type your goal</p>
+<header class="top-header">
+  <h1>LearnSmart</h1>
 </header>
 
-<section>
-  <div class="card">
-    <input id="taskInput" placeholder="What do you want to learn?">
-
-    <div class="choices">
-      <span onclick="quickPick('DSA')">DSA</span>
-      <span onclick="quickPick('Python')">Python</span>
-      <span onclick="quickPick('Java')">Java</span>
-      <span onclick="quickPick('Web Development')">Web Development</span>
-    </div>
-
-    <button onclick="textPlanner()">Generate Plan</button>
-  </div>
-
-  <div id="output" class="card"></div>
+<section class="search-section">
+  <input type="text" placeholder="Search what you want to learn...">
 </section>
 
-<!-- 🌟 -->
-<div class="star-container">
-  <div class="star-btn" onclick="toggleMenu()">🌟</div>
-  <div class="radial-menu" id="radialMenu">
-    <div class="lang python" onclick="languagePlanner('Python')">Python</div>
-    <div class="lang java" onclick="languagePlanner('Java')">Java</div>
-    <div class="lang web" onclick="languagePlanner('Web')">Web</div>
-    <div class="lang dsa" onclick="languagePlanner('DSA')">DSA</div>
-    <div class="lang js" onclick="languagePlanner('JS')">JS</div>
+<section class="courses-section">
+  <h2>Special Courses</h2>
+
+  <div class="course-grid">
+
+    <div class="course-card" onclick="openCourse('dsa')">
+      <img src="assets/images/dsa.png">
+      <h3>Data Structures & Algorithms</h3>
+    </div>
+
+    <div class="course-card">
+      <img src="assets/images/web.jpg">
+      <h3>Web Development</h3>
+    </div>
+
+    <div class="course-card">
+      <img src="assets/images/ai.png">
+      <h3>Artificial Intelligence</h3>
+    </div>
+
+    <div class="course-card">
+      <img src="assets/images/ml.jpg">
+      <h3>Machine Learning</h3>
+    </div>
+
+  </div>
+</section>
+
+<!-- 🌟 ARC REACTOR -->
+<div class="arc-container">
+  <div class="arc-ring">
+    <span>Python</span>
+    <span>Java</span>
+    <span>C++</span>
+    <span>JS</span>
   </div>
 </div>
 
-<!-- 🤖 -->
-<div class="robot">
-  <div class="robot-bubble" id="robotBubble">
-    👋 Hi! Pick a learning path.
-  </div>
-  <img src="robot.png" alt="AI Robot">
-</div>
-
-<footer>LearnSmart © 2026</footer>
-
-<script>
-function robotSay(msg) {
-  document.getElementById("robotBubble").innerText = msg;
-}
-
-function quickPick(topic) {
-  document.getElementById("taskInput").value = topic;
-  robotSay(`👍 Nice choice! Let's plan ${topic}.`);
-}
-
-function toggleMenu() {
-  document.getElementById("radialMenu").classList.toggle("active");
-  robotSay("🌟 Pick a language to start.");
-}
-
-const PLANS = {
-  DSA: {
-    time: "3–4 months",
-    steps: ["Arrays", "Linked Lists", "Stacks", "Trees", "Graphs", "DP"],
-    learn: [["GeeksforGeeks","https://www.geeksforgeeks.org/dsa-tutorial/"]],
-    practice: [["LeetCode","https://leetcode.com"]]
-  },
-  Python: {
-    time: "4–6 weeks",
-    steps: ["Basics","Control Flow","Functions","Data Structures","Projects"],
-    learn: [["Python Docs","https://docs.python.org/3/"]],
-    practice: [["HackerRank","https://hackerrank.com"]]
-  },
-  Java: {
-    time: "6–8 weeks",
-    steps: ["Syntax","OOP","Collections","Exception Handling"],
-    learn: [["Java Docs","https://docs.oracle.com/javase/"]],
-    practice: [["CodeChef","https://codechef.com"]]
-  },
-  Web: {
-    time: "2–3 months",
-    steps: ["HTML","CSS","JavaScript","Projects"],
-    learn: [["MDN","https://developer.mozilla.org"]],
-    practice: [["Frontend Mentor","https://frontendmentor.io"]]
-  }
-};
-
-function render(title, d) {
-  let html = `<h3>${title}</h3><p><b>Duration:</b> ${d.time}</p>`;
-  d.steps.forEach(s=>html+=`<div class="step">🔹 ${s}</div>`);
-  html+=`<h3>Learn</h3>`;
-  d.learn.forEach(l=>html+=`🔗 <a href="${l[1]}" target="_blank">${l[0]}</a><br>`);
-  html+=`<h3>Practice</h3>`;
-  d.practice.forEach(p=>html+=`🔗 <a href="${p[1]}" target="_blank">${p[0]}</a><br>`);
-  document.getElementById("output").innerHTML=html;
-}
-
-function textPlanner() {
-  const t = document.getElementById("taskInput").value;
-  languagePlanner(t);
-}
-
-function languagePlanner(lang) {
-  const key = lang.includes("Web") ? "Web" : lang;
-  robotSay(`🚀 Great choice! ${key} will shape your future.`);
-  render(`${key} Learning Plan`, PLANS[key] || PLANS.DSA);
-  document.getElementById("radialMenu").classList.remove("active");
-}
-</script>
-
+<script src="js/app.js"></script>
 </body>
 </html>

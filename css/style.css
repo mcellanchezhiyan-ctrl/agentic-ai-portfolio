@@ -1,0 +1,87 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f8fafc;
+}
+
+.top-header {
+  text-align: center;
+  padding: 20px;
+  background: #0ea5e9;
+  color: white;
+}
+
+.search-section {
+  padding: 20px;
+  text-align: center;
+}
+
+.search-section input {
+  width: 80%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+}
+
+.courses-section {
+  padding: 20px;
+}
+
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.course-card {
+  background: white;
+  border-radius: 16px;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.course-card img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.course-details {
+  padding: 20px;
+}
+
+/* ARC REACTOR */
+.arc-container {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+}
+
+.arc-ring {
+  width: 120px;
+  height: 120px;
+  border: 6px solid #38bdf8;
+  border-top: 6px solid transparent;
+  border-radius: 50%;
+  animation: spin 8s linear infinite;
+  position: relative;
+}
+
+.arc-ring span {
+  position: absolute;
+  font-size: 12px;
+  background: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+}
+
+.arc-ring span:nth-child(1) { top: -10px; left: 40px; }
+.arc-ring span:nth-child(2) { right: -20px; top: 40px; }
+.arc-ring span:nth-child(3) { bottom: -10px; left: 40px; }
+.arc-ring span:nth-child(4) { left: -20px; top: 40px; }
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
