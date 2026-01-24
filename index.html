@@ -18,7 +18,12 @@
 
 <section class="courses-section">
   <h2>Special Courses</h2>
-
+<section class="plan-section">
+  <h2>Your Learning Plan</h2>
+  <div id="planOutput" class="plan-box">
+    <p>Select a programming language from the arc-reactor 🌟</p>
+  </div>
+</section>
   <div class="course-grid">
 
     <div class="course-card" onclick="openCourse('dsa')">
@@ -47,11 +52,11 @@
 <!-- 🌟 ARC REACTOR -->
 <div class="arc-container">
   <div class="arc-ring">
-    <span>Python</span>
-    <span>Java</span>
-    <span>C++</span>
-    <span>JS</span>
-  </div>
+  <span onclick="generateLanguagePlan('Python')">Python</span>
+  <span onclick="generateLanguagePlan('Java')">Java</span>
+  <span onclick="generateLanguagePlan('C++')">C++</span>
+  <span onclick="generateLanguagePlan('JavaScript')">JS</span>
+</div>
 </div>
 
 <script src="js/app.js"></script>

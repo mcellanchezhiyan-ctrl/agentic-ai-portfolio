@@ -52,10 +52,13 @@ body {
 }
 
 /* ARC REACTOR */
-.arc-container {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
+.arc-ring {
+  width: 120px;
+  height: 120px;
+  border: 6px solid #38bdf8;
+  border-top: 6px solid transparent;
+  border-radius: 50%;
+  position: relative;
 }
 
 .arc-ring {
@@ -84,4 +87,14 @@ body {
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+.plan-section {
+  padding: 20px;
+}
+
+.plan-box {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
 }
