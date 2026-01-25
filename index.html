@@ -1,43 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>LearnSmart</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<!-- TOP BAR -->
 <header class="top-bar">
   <h1>LearnSmart</h1>
 
   <div class="hamburger" onclick="toggleMenu()">
-    <span></span>
-    <span></span>
-    <span></span>
+    <span></span><span></span><span></span>
   </div>
 </header>
 
-<!-- OVERLAY -->
 <div id="overlay" onclick="toggleMenu()"></div>
 
-<!-- SIDE MENU -->
 <nav id="sideMenu">
-  <a href="calendar.html">📅 Calendar</a>
-  <a href="calculator.html">🧮 Mark Calculator</a>
-  <a href="guides/setup.html">🛠 Setup Guides</a>
-</nav>^
+  <a class="menu-item" href="calendar.html" onclick="toggleMenu()">📅 Calendar</a>
+  <a class="menu-item" href="calculator.html" onclick="toggleMenu()">🧮 Calculator</a>
+  <a class="menu-item" href="guides/setup.html" onclick="toggleMenu()">🛠 Setup Guide</a>
+</nav>
 
-<!-- COURSE SEARCH -->
-<section class="course-search">
-  <input type="text" placeholder="Search courses (DSA, Web, AI, ML)" />
-</section>
-
-<!-- ARC REACTOR -->
 <section class="languages">
   <h2>Programming Languages</h2>
-  <p>Rotate and tap to generate a learning plan</p>
+  <p>Rotate & select to generate a plan</p>
 
   <div class="arc-container">
     <div class="arc-ring">
@@ -50,96 +39,41 @@
   </div>
 </section>
 
-<!-- PLAN OUTPUT (OPTION B) -->
 <section class="planner">
-  <h2>Your Personalized Plan</h2>
-  <div id="planBox" class="plan-box collapsed">
-    <p>Select a language above to generate a plan 🌟</p>
+  <h2>Your Learning Plan</h2>
+  <div id="planBox" class="plan-box">
+    Select a language above ⭐
   </div>
 </section>
 
-<!-- SPECIAL COURSES -->
 <section class="courses">
   <h2>Special Courses</h2>
-
   <div class="course-grid">
     <div class="course-card" onclick="goCourse('dsa')">
-      <img src="assets/images/dsa.png" />
+      <img src="assets/images/dsa.png">
       <h3>DSA</h3>
     </div>
-
     <div class="course-card" onclick="goCourse('web')">
-      <img src="assets/images/web.png" />
+      <img src="assets/images/web.jpg">
       <h3>Web Development</h3>
     </div>
-
     <div class="course-card" onclick="goCourse('ai')">
-      <img src="assets/images/ai.png" />
+      <img src="assets/images/ai.png">
       <h3>Artificial Intelligence</h3>
     </div>
-
     <div class="course-card" onclick="goCourse('ml')">
-      <img src="assets/images/ml.png" />
+      <img src="assets/images/ml.png">
       <h3>Machine Learning</h3>
     </div>
   </div>
 </section>
-<section class="comparison">
-  <h2>📊 Course Comparison</h2>
 
-  <div class="table-wrapper">
-    <table>
-      <thead>
-        <tr>
-          <th>Course</th>
-          <th>Duration</th>
-          <th>Difficulty</th>
-          <th>Best For</th>
-          <th>Career Outcome</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr>
-          <td>DSA</td>
-          <td>3–4 Months</td>
-          <td>Medium–Hard</td>
-          <td>Problem Solving</td>
-          <td>SDE, Interviews</td>
-        </tr>
-
-        <tr>
-          <td>Web Dev</td>
-          <td>3–4 Months</td>
-          <td>Beginner–Medium</td>
-          <td>Building Websites</td>
-          <td>Frontend / Fullstack</td>
-        </tr>
-
-        <tr>
-          <td>AI</td>
-          <td>4–6 Months</td>
-          <td>Medium</td>
-          <td>Intelligent Systems</td>
-          <td>AI Engineer</td>
-        </tr>
-
-        <tr>
-          <td>ML</td>
-          <td>4–5 Months</td>
-          <td>Medium–Hard</td>
-          <td>Data & Models</td>
-          <td>ML Engineer</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-<script src="js/app.js"></script>
-<!-- ROBOT ASSISTANT -->
+<!-- ROBOT -->
 <div id="robot">
-  <img src="assets/images/robot.png" alt="AI Assistant">
-  <div id="robot-msg">👋 Ready to learn something new?</div>
+  <img src="assets/images/robot.png">
+  <div id="robot-msg">👋 Ready to learn?</div>
 </div>
+
+<script src="js/app.js"></script>
 </body>
 </html>
