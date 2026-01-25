@@ -1,7 +1,12 @@
 /* MENU */
 function toggleMenu() {
   const menu = document.getElementById("sideMenu");
-  menu.style.right = menu.style.right === "0px" ? "-220px" : "0px";
+  const overlay = document.getElementById("overlay");
+  const burger = document.querySelector(".hamburger");
+
+  menu.classList.toggle("active");
+  overlay.classList.toggle("active");
+  burger.classList.toggle("active");
 }
 
 /* COURSE NAV */
@@ -185,6 +190,7 @@ function startRotate(e) {
 
   const p = e.touches ? e.touches[0] : e;
   startAngle = getAngle(p.clientX, p.clientY, cx, cy);
+arc.style.animation = "none";
 }
 
 function rotate(e) {
@@ -213,3 +219,42 @@ function rotate(e) {
 function stopRotate() {
   isDragging = false;
 }
+const robotMsg = document.getElementById("robot-msg");
+
+function robotSay(text) {
+  if (robotMsg) robotMsg.innerText = text;
+}
+
+/* Hook into existing actions */
+function generatePlan(lang) {
+  const plan = PLANS[lang];
+  const box = document.getElementById("planBox");
+
+  if (!plan) {
+    box.innerHTML = "<p>Plan coming soon 🚧</p>";
+    robotSay("🚧 That plan is coming soon!");
+    return;
+  }
+
+  robotSay(`🔥 Great choice! ${lang} is powerful.`);
+
+  let html = `<h3>${lang} Learning Plan</h3>`;
+  html += `<p><b>Duration:</b> ${plan.duration}</p><hr>`;
+
+  plan.days.forEach(day => {
+    html += `<p>📘 ${day}</p>`;
+  });
+
+  box.innerHTML = html;
+}
+
+/* Idle message rotation */
+setInterval(() => {
+  const msgs = [
+    "💡 Try rotating the arc!",
+    "🚀 Consistency beats intensity",
+    "👨‍💻 Coders learn by doing",
+    "⭐ Pick a language to begin"
+  ];
+  robotSay(msgs[Math.floor(Math.random() * msgs.length)]);
+}, 8000);

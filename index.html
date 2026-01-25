@@ -11,15 +11,23 @@
 <!-- TOP BAR -->
 <header class="top-bar">
   <h1>LearnSmart</h1>
-  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 </header>
+
+<!-- OVERLAY -->
+<div id="overlay" onclick="toggleMenu()"></div>
 
 <!-- SIDE MENU -->
 <nav id="sideMenu">
   <a href="calendar.html">📅 Calendar</a>
   <a href="calculator.html">🧮 Mark Calculator</a>
   <a href="guides/setup.html">🛠 Setup Guides</a>
-</nav>
+</nav>^
 
 <!-- COURSE SEARCH -->
 <section class="course-search">
@@ -128,5 +136,10 @@
   </div>
 </section>
 <script src="js/app.js"></script>
+<!-- ROBOT ASSISTANT -->
+<div id="robot">
+  <img src="assets/images/robot.png" alt="AI Assistant">
+  <div id="robot-msg">👋 Ready to learn something new?</div>
+</div>
 </body>
 </html>
