@@ -168,3 +168,12 @@ tr:hover {
   border-top: 1px solid #1e293b;
   margin: 10px 0;
 }
+button {
+  background: #38bdf8;
+  color: #020617;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
