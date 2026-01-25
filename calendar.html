@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Learning Calendar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="top-bar">
+  <h1>My Calendar</h1>
+</header>
+
+<section class="calendar-section">
+  <h2>📅 Saved Learning Plans</h2>
+  <div id="calendarList" class="calendar-list">
+    <p>No plans saved yet.</p>
+  </div>
+</section>
+
+<script>
+  const plans = JSON.parse(localStorage.getItem("savedPlans")) || [];
+  const container = document.getElementById("calendarList");
+
+  if (plans.length > 0) {
+    container.innerHTML = "";
+    plans.forEach(plan => {
+      const div = document.createElement("div");
+      div.className = "calendar-card";
+      div.innerHTML = `
+        <h3>${plan}</h3>
+        <button onclick="markDone(this)">Mark as Done</button>
+      `;
+      container.appendChild(div);
+    });
+  }
+
+  function markDone(btn) {
+    btn.innerText = "Completed ✅";
+    btn.disabled = true;
+  }
+</script>
+
+</body>
+</html>

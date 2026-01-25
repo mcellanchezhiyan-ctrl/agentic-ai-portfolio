@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Internal Mark Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="top-bar">
+  <h1>🧮 Internal Mark Calculator</h1>
+</header>
+
+<section class="calculator-section">
+
+  <div class="calc-card">
+    <label>Internal Test 1 (out of 50)</label>
+    <input type="number" id="test1" placeholder="Enter marks">
+
+    <label>Internal Test 2 (out of 50)</label>
+    <input type="number" id="test2" placeholder="Enter marks">
+
+    <label>Assignment (out of 20)</label>
+    <input type="number" id="assignment" placeholder="Enter marks">
+
+    <label>Attendance (out of 10)</label>
+    <input type="number" id="attendance" placeholder="Enter marks">
+
+    <button onclick="calculate()">Calculate</button>
+
+    <div id="result" class="result-box"></div>
+  </div>
+
+</section>
+
+<script>
+  function calculate() {
+    const t1 = Number(document.getElementById("test1").value) || 0;
+    const t2 = Number(document.getElementById("test2").value) || 0;
+    const assign = Number(document.getElementById("assignment").value) || 0;
+    const attend = Number(document.getElementById("attendance").value) || 0;
+
+    const total = t1 + t2 + assign + attend;
+    const percentage = (total / 130 * 100).toFixed(2);
+
+    document.getElementById("result").innerHTML = `
+      <h3>Total Marks: ${total} / 130</h3>
+      <p>Percentage: ${percentage}%</p>
+    `;
+  }
+</script>
+
+</body>
+</html>
