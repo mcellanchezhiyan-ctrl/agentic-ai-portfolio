@@ -1,187 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Cinematic Arc Menu</title>
-
-<style>
-/* =======================
-   GLOBAL STYLES
-======================= */
-body {
-  margin: 0;
-  background: radial-gradient(circle at center, #0b1d3a, #020814);
-  height: 100vh;
-  overflow: hidden;
-  font-family: "Inter", sans-serif;
-  color: white;
-}
-
-/* =======================
-   MENU TOGGLE BUTTON
-======================= */
-#menu-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  background: #0ff;
-  color: #000;
-  font-size: 26px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 100;
-  box-shadow: 0 0 20px rgba(0,255,255,0.6);
-  transition: transform 0.4s ease;
-}
-
-#menu-toggle:hover {
-  transform: scale(1.1);
-}
-
-/* =======================
-   ARC MENU CONTAINER
-======================= */
-#arc-menu {
-  position: fixed;
-  top: 50%;
-  right: -160px;
-  width: 320px;
-  height: 320px;
-  border-radius: 50%;
-  transform: translateY(-50%) rotate(0deg);
-  display: none;
-  background:
-    radial-gradient(circle at center,
-      rgba(0,255,255,0.25),
-      rgba(0,0,0,0) 70%);
-  border: 2px solid rgba(0,255,255,0.3);
-  box-shadow: 0 0 40px rgba(0,255,255,0.25);
-  transition: opacity 0.4s ease;
-}
-
-/* =======================
-   MENU ITEMS
-======================= */
-.menu-item {
-  position: absolute;
-  width: 90px;
-  text-align: center;
-  font-size: 14px;
-  cursor: pointer;
-  user-select: none;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.menu-item:hover {
-  color: #0ff;
-  transform: scale(1.1);
-}
-</style>
+  <meta charset="UTF-8">
+  <title>Smart Learn</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
 
-<!-- MENU BUTTON -->
-<div id="menu-toggle">☰</div>
+<header class="hero">
+  <h1>Smart Learn</h1>
+  <p class="tagline">
+    A student-driven knowledge exchange platform where learning and teaching coexist.
+  </p>
+  <a href="dashboard.html" class="cta">Go to Dashboard</a>
+</header>
 
-<!-- ARC MENU -->
-<div id="arc-menu">
-  <div class="menu-item">Home</div>
-  <div class="menu-item">Planner</div>
-  <div class="menu-item">Calculator</div>
-  <div class="menu-item">Guide</div>
-  <div class="menu-item">Calendar</div>
-  <div class="menu-item">About</div>
-</div>
+<section class="about">
+  <h2>The Problem</h2>
+  <p>Students face information overload, lack of guidance, and no clear learning path.</p>
 
-<script>
-/* =======================
-   VARIABLES
-======================= */
-const menu = document.getElementById("arc-menu");
-const toggle = document.getElementById("menu-toggle");
-const items = document.querySelectorAll(".menu-item");
-
-let isOpen = false;
-let angle = 0;
-let isDragging = false;
-let startX = 0;
-
-/* =======================
-   POSITION ITEMS IN SEMI CIRCLE
-======================= */
-const radius = 130;
-const center = 160;
-const total = items.length;
-const step = 180 / (total - 1);
-
-items.forEach((item, i) => {
-  const deg = step * i - 90;
-  const rad = deg * Math.PI / 180;
-
-  const x = center + radius * Math.cos(rad);
-  const y = center + radius * Math.sin(rad);
-
-  item.style.left = `${x - 45}px`;
-  item.style.top = `${y - 10}px`;
-});
-
-/* =======================
-   TOGGLE MENU
-======================= */
-toggle.addEventListener("click", () => {
-  isOpen = !isOpen;
-  menu.style.display = isOpen ? "block" : "none";
-});
-
-/* =======================
-   ROTATION (MOUSE + TOUCH)
-======================= */
-menu.addEventListener("mousedown", e => {
-  isDragging = true;
-  startX = e.clientX;
-});
-
-menu.addEventListener("touchstart", e => {
-  isDragging = true;
-  startX = e.touches[0].clientX;
-});
-
-window.addEventListener("mousemove", e => {
-  if (!isDragging) return;
-  rotateMenu(e.clientX);
-});
-
-window.addEventListener("touchmove", e => {
-  if (!isDragging) return;
-  rotateMenu(e.touches[0].clientX);
-});
-
-window.addEventListener("mouseup", () => isDragging = false);
-window.addEventListener("touchend", () => isDragging = false);
-
-/* =======================
-   ROTATION FUNCTION
-======================= */
-function rotateMenu(currentX) {
-  const delta = currentX - startX;
-  angle += delta * 0.3;
-  startX = currentX;
-
-  menu.style.transform = `translateY(-50%) rotate(${angle}deg)`;
-
-  // Keep items upright
-  items.forEach(item => {
-    item.style.transform = `rotate(${-angle}deg)`;
-  });
-}
-</script>
+  <h2>Our Solution</h2>
+  <p>
+    Smart Learn enables students to learn and teach simultaneously using a
+    contribution-based knowledge points system instead of money.
+  </p>
+</section>
 
 </body>
 </html>
