@@ -1,274 +1,272 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>codeX Community</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Codex Community</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    /* ===== GLOBAL ===== */
-    body {
-      margin: 0;
-      font-family: Inter, Arial, sans-serif;
-      background: radial-gradient(circle at top, #0b1d3a, #020814);
-      color: #fff;
-      overflow-x: hidden;
-    }
+<style>
+/* ======================
+   RESET + BASE (MOBILE FIRST)
+====================== */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+  background: #050b1a;
+  color: #ffffff;
+}
+a { text-decoration: none; color: inherit; }
 
-    a { color: inherit; text-decoration: none; }
+/* ======================
+   APP HEADER
+====================== */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 56px;
+  background: #020814;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(0,255,255,0.15);
+}
+.header h1 {
+  font-size: 16px;
+  color: #00ffff;
+}
+.menu-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #00ffff;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  cursor: pointer;
+}
 
-    /* ===== MENU BUTTON ===== */
-    #menu-toggle {
-      position: fixed;
-      top: 16px;
-      right: 16px;
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      background: #00ffff;
-      color: #000;
-      font-size: 22px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 1000;
-      box-shadow: 0 0 18px rgba(0,255,255,0.6);
-    }
+/* ======================
+   SIDE MENU (APP STYLE)
+====================== */
+.menu {
+  position: fixed;
+  top: 0;
+  right: -260px;
+  width: 260px;
+  height: 100%;
+  background: #050b1a;
+  padding: 80px 20px;
+  transition: right 0.35s ease;
+  z-index: 999;
+}
+.menu.open { right: 0; }
+.menu a {
+  display: block;
+  padding: 14px 0;
+  font-size: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
 
-    /* ===== SLIDE MENU ===== */
-    #menu {
-      position: fixed;
-      top: 0;
-      right: -240px;
-      width: 240px;
-      height: 100%;
-      background: #050b1a;
-      padding: 80px 20px;
-      transition: right 0.4s ease;
-      z-index: 999;
-    }
+/* ======================
+   MAIN CONTAINER
+====================== */
+main {
+  padding-top: 70px;
+  padding-bottom: 40px;
+}
 
-    #menu.open { right: 0; }
+/* ======================
+   SECTION / CARDS
+====================== */
+.section {
+  padding: 16px;
+}
+.card {
+  background: #0b1d3a;
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 14px;
+  box-shadow: 0 0 18px rgba(0,255,255,0.08);
+}
+.card h2 {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #00ffff;
+}
+.card p {
+  font-size: 14px;
+  opacity: 0.9;
+}
 
-    #menu a {
-      display: block;
-      margin: 18px 0;
-      font-size: 16px;
-      opacity: 0.85;
-    }
+/* ======================
+   BUTTONS
+====================== */
+.btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 22px;
+  text-align: center;
+  font-weight: 600;
+  background: #00ffff;
+  color: #000;
+}
+.btn.secondary {
+  background: transparent;
+  border: 1px solid #00ffff;
+  color: #00ffff;
+}
 
-    /* ===== SECTIONS ===== */
-    section {
-      padding: 60px 20px;
-      max-width: 900px;
-      margin: auto;
-    }
+/* ======================
+   PROGRESS
+====================== */
+.progress {
+  height: 8px;
+  background: #1a233a;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 6px;
+}
+.progress span {
+  display: block;
+  height: 100%;
+  width: 45%;
+  background: #00ffff;
+}
 
-    h1, h2 { color: #00ffff; }
-
-    /* ===== HERO ===== */
-    .hero {
-      text-align: center;
-      padding-top: 90px;
-    }
-
-    .hero p {
-      opacity: 0.85;
-      max-width: 600px;
-      margin: 20px auto;
-    }
-
-    .cta {
-      display: inline-block;
-      margin-top: 25px;
-      padding: 14px 30px;
-      background: #00ffff;
-      color: #000;
-      border-radius: 25px;
-      font-weight: bold;
-    }
-
-    /* ===== DASHBOARD ===== */
-    .card {
-      background: rgba(255,255,255,0.04);
-      border-radius: 14px;
-      padding: 20px;
-      margin: 16px 0;
-      box-shadow: 0 0 20px rgba(0,255,255,0.08);
-    }
-
-    .row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-
-    .row .card { flex: 1; min-width: 220px; }
-
-    .btn {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 10px 18px;
-      border-radius: 20px;
-      background: #00ffff;
-      color: #000;
-      font-weight: bold;
-    }
-
-    .btn.outline {
-      background: transparent;
-      color: #00ffff;
-      border: 1px solid #00ffff;
-    }
-
-    .progress-bar {
-      background: #1a233a;
-      height: 8px;
-      border-radius: 5px;
-      overflow: hidden;
-      margin-top: 8px;
-    }
-
-    .progress {
-      height: 100%;
-      background: #00ffff;
-      width: 45%;
-    }
-
-    /* ===== MOBILE ===== */
-    @media (max-width: 768px) {
-      .row { flex-direction: column; }
-    }
-  </style>
+/* ======================
+   DESKTOP ENHANCEMENTS
+====================== */
+@media (min-width: 900px) {
+  main {
+    max-width: 1100px;
+    margin: auto;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+}
+</style>
 </head>
 
 <body>
 
+<!-- HEADER -->
+<div class="header">
+  <h1>Codex Community</h1>
+  <div class="menu-btn" id="menuBtn">☰</div>
+</div>
+
 <!-- MENU -->
-<div id="menu-toggle">☰</div>
-<nav id="menu">
-  <a href="#home">Home</a>
+<div class="menu" id="menu">
   <a href="#dashboard">Dashboard</a>
   <a href="#teach">Teach</a>
   <a href="#learn">Learn</a>
   <a href="#career">Career</a>
   <a href="#resume">Resume</a>
-</nav>
+</div>
 
-<!-- HERO -->
-<section id="home" class="hero">
-  <h1>CodeX Community</h1>
-  <p>
-    Codex Community is a peer-driven learning platform where students learn and teach
-together, exchanging knowledge through contribution rather than money.
-  </p>
-  <a href="#dashboard" class="cta">Go to Dashboard</a>
-</section>
+<main>
 
 <!-- DASHBOARD -->
-<section id="dashboard">
-  <h2>Your Dashboard</h2>
-
-  <div class="row">
-    <div class="card">
-      <h3>Knowledge Points</h3>
-      <p>⭐ <span id="points">0</span></p>
-    </div>
-
-    <div class="card">
-      <h3>Goal</h3>
-      <p>🎯 Full-Stack Developer</p>
-    </div>
+<div class="section" id="dashboard">
+  <div class="card">
+    <h2>Your Identity</h2>
+    <p>🎯 Goal: Full-Stack Developer</p>
+    <p>⭐ Points: <span id="points">0</span></p>
   </div>
 
   <div class="card">
-    <h3>Career Progress</h3>
-    <div class="progress-bar"><div class="progress"></div></div>
-    <small>45% completed</small>
+    <h2>Progress</h2>
+    <div class="progress"><span></span></div>
+    <p>45% completed</p>
   </div>
-</section>
+</div>
 
-<!-- TEACH -->
-<section id="teach">
-  <h2>Teach a Topic</h2>
-  <div class="card">
-    <p>Share what you know and earn knowledge points.</p>
-    <button class="btn" onclick="teach()">Teach & Earn +10</button>
+<!-- ACTIONS -->
+<div class="section grid">
+  <div class="card" id="teach">
+    <h2>Teach</h2>
+    <p>Share what you know. Earn knowledge points.</p>
+    <div class="btn" onclick="teach()">Teach & Earn +10</div>
   </div>
-</section>
 
-<!-- LEARN -->
-<section id="learn">
-  <h2>Learn a Topic</h2>
-  <div class="card">
-    <p>Spend points to learn a new skill from the community.</p>
-    <button class="btn outline" onclick="learn()">Learn & Spend −10</button>
+  <div class="card" id="learn">
+    <h2>Learn</h2>
+    <p>Use points to learn from the community.</p>
+    <div class="btn secondary" onclick="learn()">Learn & Spend −10</div>
   </div>
-</section>
+</div>
 
 <!-- CAREER -->
-<section id="career">
-  <h2>Career Guidance</h2>
+<div class="section" id="career">
   <div class="card">
-    <h3>Frontend Developer</h3>
+    <h2>Career Guidance</h2>
+    <p>Frontend Developer requires:</p>
     <ul>
       <li>HTML, CSS, JavaScript</li>
       <li>Git & GitHub</li>
       <li>React (optional)</li>
     </ul>
   </div>
-</section>
+</div>
 
 <!-- RESUME -->
-<section id="resume">
-  <h2>Resume Assistance</h2>
+<div class="section" id="resume">
   <div class="card">
+    <h2>Resume Assistant</h2>
     <p>Suggested Experience:</p>
     <ul>
-      <li>Peer Mentor – taught community members</li>
+      <li>Peer Mentor – Codex Community</li>
       <li>Self-learning projects</li>
     </ul>
-    <p><b>Resume Strength:</b> 70%</p>
+    <p>Resume Strength: <b>70%</b></p>
   </div>
-</section>
+</div>
+
+</main>
 
 <script>
-  /* ===== MENU ===== */
-  const toggle = document.getElementById("menu-toggle");
-  const menu = document.getElementById("menu");
-  toggle.onclick = () => menu.classList.toggle("open");
+/* MENU */
+const btn = document.getElementById("menuBtn");
+const menu = document.getElementById("menu");
+btn.onclick = () => menu.classList.toggle("open");
 
-  /* ===== POINTS LOGIC ===== */
-  let points = localStorage.getItem("points");
-  if (!points) {
-    points = 100;
-    localStorage.setItem("points", points);
+/* POINTS */
+let points = localStorage.getItem("points");
+if (!points) {
+  points = 100;
+  localStorage.setItem("points", points);
+}
+function update() {
+  document.getElementById("points").innerText = points;
+}
+function teach() {
+  points = Number(points) + 10;
+  localStorage.setItem("points", points);
+  update();
+  alert("You earned +10 points");
+}
+function learn() {
+  if (points < 10) {
+    alert("Not enough points");
+    return;
   }
-
-  function updatePoints() {
-    document.getElementById("points").innerText = points;
-  }
-
-  function teach() {
-    points = parseInt(points) + 10;
-    localStorage.setItem("points", points);
-    updatePoints();
-    alert("You earned +10 knowledge points!");
-  }
-
-  function learn() {
-    if (points < 10) {
-      alert("Not enough points!");
-      return;
-    }
-    points = parseInt(points) - 10;
-    localStorage.setItem("points", points);
-    updatePoints();
-    alert("You spent -10 points to learn!");
-  }
-
-  updatePoints();
+  points = Number(points) - 10;
+  localStorage.setItem("points", points);
+  update();
+  alert("You spent −10 points");
+}
+update();
 </script>
 
 </body>
